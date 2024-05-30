@@ -14,4 +14,9 @@ export class BalanceService {
   GetBalanceByUser(userId:number):Observable<any>{
     return this.http.get<any>(this.baseApiUrl+ '/api/Balance/UserID?userId=' + userId)
   }
+
+  GetBalances():Observable<any>{
+    return this.http.get<any>(this.baseApiUrl + '/api/Balance/Balance')
+  }
+
 }

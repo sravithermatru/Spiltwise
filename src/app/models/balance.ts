@@ -1,5 +1,5 @@
 export interface Balance {
-    BalanceId : number,
-    UsersId : number,
-    Amount : number
+    balanceId : number,
+    usersId : number,
+    amount : number
 }

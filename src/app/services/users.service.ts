@@ -12,11 +12,11 @@ export class UsersService {
 
   baseApiUrl : string = 'https://localhost:7050';
 
-  GetUsers():Observable<Users>{
-    return this.http.get<Users>(this.baseApiUrl + '/api/Users');
+  GetUsers():Observable<any>{
+    return this.http.get<any>(this.baseApiUrl + '/api/Users');
   }
 
-  GetUserByGroup(groupId:number):Observable<Users>{
-    return this.http.get<Users>(this.baseApiUrl + '/api/Users/GroupId?groupId=' + groupId);
+  GetUserByGroup(groupId:number):Observable<any>{
+    return this.http.get<any>(this.baseApiUrl + '/api/Users/GroupId?groupId=' + groupId);
   }
 }

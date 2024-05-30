@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="p-5" style="background-color:wheat; height: 100vh;">
+        <div class=" py-5 mb-5 d-flex justify-content-around mx-auto width:75%"
+            style="border: 1px solid gray; border-radius: 10px; background-color: azure; height: 180px;">
+            <h6 class="mt-4">
+                Your Expenses :
+            </h6>
+            <div class="mt-4">
+                Total Expenses:
+            </div>
+        </div>
+
+        <div class=" p-3 carousel-outer">
+
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        
+                        <div class="card">
+                            <button type="button"  [routerLink]="['/Createform']" data-toggle="modal">
+                            <div class="card-body">
+                                <div>
+                                    <h1>Create New Group</h1>
+                                </div>
+                            </div>
+                      
+                        
+                        </button>  </div>
+                    </div>
+                    
+                    <div class="carousel-item" *ngFor=" let group of groups">
+                       
+                        <div class="card">
+                            
+                            <div class="card-body" routerLink="['/group']">
+                                <h3> {{group.groupDetails.name}}</h3>
+                                <p> {{group.groupDetails.description}}</p>
+                                <h5> {{group.groupDetails.category}}</h5>
+                                <button [routerLink]="['/group',group.groupId]">View</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

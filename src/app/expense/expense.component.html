@@ -1,0 +1,35 @@
+<div class="card">
+<div class="card-header">Add Expenses</div>
+<div>
+    <form [formGroup]='addExpenseForm' >
+        <div>
+            <label class="form-label">Title</label>
+            <input class="form-control" type="text" formControlName="expTitle"
+            id="title" [(ngModel)]="addExpenseDetailRequest.title">
+        </div>
+        <div>
+            <label class="form-label">Description</label>
+            <input class="form-control" type="text" formControlName="expDesc"
+            id="desc" [(ngModel)]="addExpenseDetailRequest.description">
+        </div>
+        <div>
+            <label class="form-label">Amount</label>
+            <input class="form-control" type="text" formControlName="amount"
+            id="amt" [(ngModel)]="addExpenseDetailRequest.amount">
+        </div>
+        <div>
+            <label class="form-label">Paid BY</label>
+            <!-- <select  class="form-control" formControlName="selectedCourse">
+                <option value="">Select the member...</option>
+              <option *ngFor="let member of members" [value]="member.id">{{ member.name }}</option>
+              </select> -->
+        </div>
+        <div>
+            <label></label>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+</div>

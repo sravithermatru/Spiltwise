@@ -5,6 +5,8 @@ import { Users } from 'src/app/models/users';
 import { GroupService } from 'src/app/services/group.service';
 
 import * as $ from 'jquery';
+import { count } from 'rxjs';
+import { UsersService } from 'src/app/services/users.service';
 //
 $('#elemId').width();
 
@@ -28,19 +30,36 @@ export class DashboardComponent implements OnInit{
   groups: Groups[]=[];
   users: Users[]=[];
   groupId: number = 0
+  numberOfGroup: number = 0;
+  numberOfUsers: number = 0;
 
 
-  constructor(private groupService: GroupService){}
+  constructor(
+    private groupService: GroupService,
+    private usersService: UsersService
+    ){}
 
   ngOnInit(): void {
     this.groupService.GetAllGroup()
     .subscribe({
       next:(response)=>{
         this.groups = response.data;
+        this.numberOfGroup= this.groups.length;
         console.log(this.groups);  
       },
       error:(response)=>{
         console.log(response);
+      }
+    });
+
+    this.usersService.GetUsers()
+    .subscribe({
+      next:(response)=>{
+        this.users = response.data;
+        this.numberOfUsers = this.users.length;
+      },
+      error:(response)=>{
+        console.log(response)
       }
     });
     
@@ -50,18 +69,20 @@ export class DashboardComponent implements OnInit{
     $(".carousel-control-next").on("click", function () {
      //check if you can go any further
         scrollPosition += cardWidth;  
-       // console.log(scrollPosition);//update scroll position
-        $(".carousel-inner").animate({ scrollLeft: scrollPosition },400); //scroll left
+        console.log(carouselWidth)
+        console.log(cardWidth);
+        console.log(scrollPosition);//update scroll position
+        $(".carousel-inner").animate({ scrollLeft: scrollPosition },1200); //scroll left
       
     });
     $(".carousel-control-prev").on("click", function () {
-      if (scrollPosition > 0) {
+      // if (scrollPosition > 0) {
         scrollPosition -= cardWidth;
         $(".carousel-inner").animate(
           { scrollLeft: scrollPosition },
-          400
+          1200
         );
-      }
+      // }
     });
     
   }

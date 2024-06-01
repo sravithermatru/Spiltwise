@@ -11,6 +11,7 @@ import { ExpenseComponent } from './expense/expense.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AddUsersComponent } from './Group/add-users/add-users.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { Router } from '@angular/router';
     DashboardComponent,
     CreateGroupComponent,
     GroupComponent,
-    ExpenseComponent
+    ExpenseComponent,
+    AddUsersComponent
   ],
   imports: [
     BrowserModule,

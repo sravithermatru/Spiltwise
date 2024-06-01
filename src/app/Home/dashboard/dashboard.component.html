@@ -1,58 +1,118 @@
 <div class="container-fluid">
-    <div class="p-5" style="background-color:wheat; height: 100vh;">
-        <div class=" py-5 mb-5 d-flex justify-content-around mx-auto width:75%"
-            style="border: 1px solid gray; border-radius: 10px; background-color: azure; height: 180px;">
-            <h6 class="mt-4">
-                Your Expenses :
-            </h6>
-            <div class="mt-4">
-                Total Expenses:
+    <div class="background">
+        <div class="top-design row">
+
+            <div class="col-3 top-box-sub">
+
+            </div>
+            <div class="col-2 top-box-sub text-center">
+                <div class="mt-4">
+                    Total Groups : {{numberOfGroup}}
+                </div>
+                <div class="mt-4">
+                    Total Members: {{numberOfUsers}}
+                </div>
+            </div>
+            <div class="col-4 top-box-sub">
+                <h6 class="mt-4">
+                    Your Expenses :
+                </h6>
+                <div class="mt-4">
+                    Total Expenses:
+                </div>
             </div>
         </div>
 
-        <div class=" p-3 carousel-outer">
-
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        
-                        <div class="card">
-                            <button type="button"  [routerLink]="['/Createform']" data-toggle="modal">
-                            <div class="card-body">
-                                <div>
-                                    <h1>Create New Group</h1>
+        <div class="row">
+            <div class="col-3  input">
+               
+                    <button type="button" class="rounded-pill button" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                        <div>
+                            <h5>Add new member</h5>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Member</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="recipient-name"
+                                                        class="form-label">Name:</label>
+                                                    <input type="text" class="form-control" id="recipient-name">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="recipient-name"
+                                                        class="form-label">Email:</label>
+                                                    <input type="text" class="form-control" id="recipient-name">
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Send message</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                      
-                        
-                        </button>  </div>
-                    </div>
-                    
-                    <div class="carousel-item" *ngFor=" let group of groups">
-                       
-                        <div class="card">
-                            
-                            <div class="card-body" routerLink="['/group']">
-                                <h3> {{group.groupDetails.name}}</h3>
-                                <p> {{group.groupDetails.description}}</p>
-                                <h5> {{group.groupDetails.category}}</h5>
-                                <button [routerLink]="['/group',group.groupId]">View</button>
+                        </div>
+                    </button>
+               
+                <div class="">
+                    <button type="button" class="rounded-pill button" [routerLink]="['/Createform']"
+                        data-toggle="modal">
+
+                        <div>
+                            <h5>Create New Group</h5>
+                        </div>
+
+                    </button>
+                </div>
+            </div>
+            <div class="col-8 group">
+                <div class="carousel-outer">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item ">
+
+                                <div class="card">
+                                </div>
+                            </div>
+                            <div class="carousel-item active" *ngFor=" let group of groups">
+
+                                <div class="card">
+                                    <div class="card-body" routerLink="['/group']">
+                                        <h3> {{group.groupDetails.name}}</h3>
+                                        <p> {{group.groupDetails.description}}</p>
+                                        <h5> {{group.groupDetails.category}}</h5>
+                                        <button [routerLink]="['/group',group.groupId]">View</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
+
         </div>
+
 
 
     </div>

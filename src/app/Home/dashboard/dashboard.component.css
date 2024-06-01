@@ -10,17 +10,64 @@
     }
   }
 
+  .background{
+    background-color: rgb(220, 238, 170);
+     height: 100vh;
+    
+  }
+  .top-design{
+    height: 35%;
+    border-radius:  0 0 0 250px;
+    background-color: rgb(115, 148, 73);
+  }
+  .top-box{
+    border: solid 1px black;
+    
+  }
+  .top-box-sub{
+    height: 80%;
+    margin-top: 60px;
+    margin-left: 50px;
+    margin-right: 40px;
+    margin-bottom: -20px;
+    border: solid 1px black;
+    border-radius: 30px;
+    background-color:rgb(235, 251, 237) ;
+  }
+  .top-box-sub-mid{
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 40px;
+    margin-bottom: -20px;
+    border: solid 1px black;
+    border-radius: 30px;
+  }
   .carousel-outer{
-    background-color:rgb(251, 248, 235);
+    background-color:rgb(235, 251, 237) ;
     border-radius: 20px;
   }
 
   .carousel-inner{
     padding: 1em;
 }
+.input{
+  margin: 90px 0 0 30px;
+  height: 40vh;
+}
+.button{  
+  margin: 20px 0 10px 10px;
+  height: 15vh;
+  width: 90%;
+  background-color: rgb(129, 132, 73);
+}
+.group{
+  margin: 90px 0 0 30px;
+  height: 40vh;
+}
 .card{
-    margin: 0 .5em;
-    width: 200px;
+    margin: 0 15px 0 -90%;
+    width: 180px;
+    height: 200px;
     box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
     border: none;
 }

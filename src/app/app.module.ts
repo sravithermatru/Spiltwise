@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AddUsersComponent } from './Group/add-users/add-users.component';
+import { ExpenseDetailsModalComponent } from './components/expense-details-modal/expense-details-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AddUsersComponent } from './Group/add-users/add-users.component';
     CreateGroupComponent,
     GroupComponent,
     ExpenseComponent,
-    AddUsersComponent
+    AddUsersComponent,
+    ExpenseDetailsModalComponent
   ],
   imports: [
     BrowserModule,

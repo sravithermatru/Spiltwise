@@ -25,68 +25,92 @@
 
         <div class="row">
             <div class="col-3  input">
-               
-                    <button type="button" class="rounded-pill button" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                        <div>
-                            <h5>Add new member</h5>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Member</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form>
-                                                <div class="mb-3">
-                                                    <label for="recipient-name"
-                                                        class="form-label">Name:</label>
-                                                    <input type="text" class="form-control" id="recipient-name">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="recipient-name"
-                                                        class="form-label">Email:</label>
-                                                    <input type="text" class="form-control" id="recipient-name">
-                                                </div>
-                                                
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Send message</button>
-                                        </div>
+
+                <button type="button" class="rounded-pill button" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrops">
+                    <div>
+                        <h5>Add new member</h5>
+                    </div>
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropsLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+                                    <div>
+                                        <label>Name: </label>
+                                        <input type="text">
                                     </div>
-                                </div>
+                                    <div>
+                                        <label>Email</label>
+                                        <input type="email">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
-                    </button>
-               
-                <div class="">
-                    <button type="button" class="rounded-pill button" [routerLink]="['/Createform']"
-                        data-toggle="modal">
-
-                        <div>
-                            <h5>Create New Group</h5>
-                        </div>
-
-                    </button>
+                    </div>
                 </div>
+
+                <button type="button" class="rounded-pill button" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop">
+                    <div>
+                        <h5>Add Group</h5>
+                    </div>
+                </button>
+
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+                                    <div>
+                                        <label>Name: </label>
+                                        <input type="text">
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <button type="button" class="rounded-pill button" [routerLink]="['/Createform']" data-toggle="modal">
+                    <div>
+                        <h5>Create New Group</h5>
+                    </div>
+                </button> -->
+
             </div>
             <div class="col-8 group">
                 <div class="carousel-outer">
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item ">
-
                                 <div class="card">
                                 </div>
                             </div>
                             <div class="carousel-item active" *ngFor=" let group of groups">
-
                                 <div class="card">
                                     <div class="card-body" routerLink="['/group']">
                                         <h3> {{group.groupDetails.name}}</h3>
@@ -110,10 +134,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-
     </div>
 </div>

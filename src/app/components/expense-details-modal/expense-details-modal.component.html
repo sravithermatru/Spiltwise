@@ -1,0 +1,16 @@
+<div class="modal">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>{{expense.expenseDetails.amount}}</h2>
+        <p *ngIf="expense.usersPaid; else noUser">
+            Paid By: {{expense.usersPaid[0].name}}
+        </p>
+        <ng-template #noUser><p>Paid By: N/A</p></ng-template>
+        <h5>Members:
+        <p *ngFor="let u of userInv">
+             {{u.name}}
+        </p>
+        </h5>
+    </div>
+
+</div>

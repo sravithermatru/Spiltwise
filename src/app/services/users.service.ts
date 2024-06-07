@@ -19,4 +19,8 @@ export class UsersService {
   GetUserByGroup(groupId:number):Observable<any>{
     return this.http.get<any>(this.baseApiUrl + '/api/Users/GroupId?groupId=' + groupId);
   }
+
+  CreateUserAsync(users:Users):Observable<Users>{
+    return this.http.post<Users>(this.baseApiUrl+ '/api/Users',users);
+  }
 }

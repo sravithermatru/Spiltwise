@@ -11,6 +11,11 @@ import { error } from 'jquery';
 import { UsersService } from 'src/app/services/users.service';
 import { Balance } from 'src/app/models/balance';
 
+interface UserBalance {
+  name: string;
+  balance: number;
+}
+
 
 @Component({
   selector: 'app-group',
@@ -32,8 +37,11 @@ export class GroupComponent implements OnInit {
   users: any[] = [];
   usersBal: Users[] = [];
   userId: number = 0;
-  balData : Balance[]= [];
- 
+  balData: number = 0;
+
+  userBalances: UserBalance[] = [];
+  filteredBalances: any[] = [];
+  selectedExpense: any;
 
   constructor(
     private groupService: GroupService,
@@ -43,6 +51,8 @@ export class GroupComponent implements OnInit {
     private userService: UsersService) { }
 
   ngOnInit(): void {
+
+
     // this.groupService.GetAllGroup()
     //   .subscribe({
     //     next: (groups) => {
@@ -52,6 +62,7 @@ export class GroupComponent implements OnInit {
     //       console.log(response);
     //     }
     //   });
+
 
     this.route.paramMap.subscribe({
       next: (response) => {
@@ -70,10 +81,12 @@ export class GroupComponent implements OnInit {
                 //  console.log(this.userId);
                 for (let i of this.users)
                   if (i.usersId) {
+
                     this.balanceService.GetBalanceByUser(i.usersId)
                       .subscribe({
                         next: (response) => {
                           this.usersBal = response.data;
+                          //console.log(response.data.usersId);
                           //console.log(this.usersBal);
                         },
                         error: (response) => {
@@ -101,6 +114,7 @@ export class GroupComponent implements OnInit {
                 //console.log(this.expenses);
                 for (let i of this.expenses) {
                   this.TotalAmount = this.TotalAmount + i.expenseDetails.amount;
+
                 }
                 //console.log(this.TotalAmount);
               },
@@ -111,56 +125,86 @@ export class GroupComponent implements OnInit {
         }
       }
     })
-    // this.route.paramMap.subscribe({
-    //   next:(response)=>{
-    //     this.id = response.get('groupId');
-    //     if(this.id){
-    //       this.balanceService.GetBalanceByUser(this.id)
-    //       .subscribe({
-    //         next:(response)=>{
-    //           this.userId=response.data.users;
-    //           console.log(this.userId);
-    //         },
-    //         error:(response)=>{
-    //           console.log(response);
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
+    
     this.route.paramMap.subscribe({
       next: (response) => {
         this.id = response.get('groupId');
-
+ 
+ 
         if (this.id) {
-          this.userService.GetUserByGroup(this.id)
-
+          this.userService
+            .GetUserByGroup(this.id)
             .subscribe({
               next: (response) => {
                 this.userdata = response.data;
                 //console.log(this.userName);
-                // this.userId  = response.data.usersId;
-                // console.log(this.userId)
-                for (var i of this.userdata) {
-                  console.log(i.usersId);
-                  this.userId = i.usersId;
-                  this.balanceService.GetBalanceByUser(this.userId)
-                    .subscribe({
-                      next: (response) => {
-                        this.balData = response.data;
-                        console.log(this.balData);
-                      }
-                    })
-                }
+                // this.userId  = response.data.userId;
+               
+                this.loadUserBalances(this.userdata);
               },
               error: (response) => {
                 console.log(response);
-              }
-            })
+              },
+            });
         }
+      },
+    });
+    
 
+
+  }
+ 
+  viewExpenseModal(expense:any)
+  {
+    this.selectedExpense=expense;
+  }
+ 
+  closeModal(){
+    this.selectedExpense=null;
+  }
+
+
+  loadUserBalances(userData: any[]): void{
+ 
+    console.log(userData);
+   
+   
+    this.balanceService.GetBalances()
+      .subscribe((balances:any) => {
+        console.log('Balances:', balances);
+        for(var user of userData)
+        {
+          for(var balance of balances.data)
+          {
+            if(user.usersId==balance.usersId)
+            {
+              this.filteredBalances=this.filteredBalances.concat(balance);
+            }
+          }
+         
+        }
+        console.log(this.filteredBalances);
+        this.userBalances=this.margeUserBalance(userData,this.filteredBalances);
+      //  console.log(this.userBalances);
+       
+      },
+    );
+   
+  }
+  margeUserBalance(users: any[], balances: any[]): UserBalance[] {
+    if (!Array.isArray(users)) {
+      console.error('Expected arrays for users and balances');
+      return [];
+    }
+    if (!Array.isArray(balances)) {
+      console.log("error")
+    }
+    return balances.map((balance: Balance) => {
+      const user = users.find((u: Users) => u.usersId === balance.usersId);
+      return {
+        name: user ? user.name : "Unknown",
+        balance: balance.amount
       }
     })
-
   }
 }

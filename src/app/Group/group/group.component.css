@@ -19,6 +19,8 @@
 }
 .custom-table{
 margin-left: 15px;
+overflow-x: scroll;
+height:100px
 }
 th{
   border-radius: 10px;

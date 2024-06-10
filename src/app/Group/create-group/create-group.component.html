@@ -1,65 +1,66 @@
-
+<div class="modal">
+    <div class="modal-content">
         <div class="card px-3 py-5" style="border: 1.5px solid black;">
-                <div class="text-center mb-3" >
-                    <img class="card-img-top" src="" alt="pic">
-                </div>
-                <div>
-                    <form [formGroup]='addGroupForm' (ngSubmit)="addGroup()">
-                        <div>
-                            <label class="form-label">Group Name</label>
-                            <input class="form-control" type="text" formControlName="groupName"
-                            id="name" name="Name" [(ngModel)]="addGroupRequest.groupDetails.name">
-                        </div>
-                        <div class="my-3">
-                            <label class="form-label">Description</label>
-                            <input class="form-control" type="text" formControlName="groupDesc"
-                            id="desc" name="Description" [(ngModel)]="addGroupRequest.groupDetails.description">
-                        </div>
-                        <div class="my-3">
-                            <label class="form-label">category</label>
-
-                            <input type="radio" class="btn-check" name="category" formControlName="category"
-                             id="option1" value="category1" [(ngModel)]="addGroupRequest.groupDetails.category">
-                            <label class="btn btn-outline-primary mx-2" for="option1">category1</label>
-
-                            
-                            <input type="radio" class="btn-check" name="category" formControlName="category"
-                             id="option2" value="category2" [(ngModel)]="addGroupRequest.groupDetails.category">
-                            <label class="btn btn-outline-primary mx-2" for="option2">category2</label>
-
-                            
-                            <input type="radio" class="btn-check" name="category" formControlName="category"
-                             id="option3" value="category3" [(ngModel)]="addGroupRequest.groupDetails.category">
-                            <label class="btn btn-outline-primary mx-2" for="option3">category3</label>
-
-                        </div>
-
-                        <div>
-                            <label class="form-label"> Members</label>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle"
-                                type="button" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Select Members
-                                </button>
-
-                                <ul class=" dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li *ngFor="let user of usersList">
-                                        <input type="checkbox" [value]="user.usersId"
-                                        (change)="onCheckBoxChange($event)"/>{{user.name}}
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- <input type="checkbox" class="form-control" formControlName="members"> -->
-                        </div>
-
-
-                        <div>
-                            <button type="submit" >Submit</button>
-                        </div>
-                    </form>
-                </div>
-                
-
+            <div class="text-center mb-3">
+                <img class="card-img-top" src="" alt="pic">
             </div>
+            <div>
+                <form [formGroup]='addGroupForm' (ngSubmit)="addGroup()">
+                    <div>
+                        <label class="form-label">Group Name</label>
+                        <input class="form-control" type="text" formControlName="groupName" id="name" name="Name"
+                            [(ngModel)]="addGroupRequest.groupDetails.name">
+                    </div>
+                    <div class="my-3">
+                        <label class="form-label">Description</label>
+                        <input class="form-control" type="text" formControlName="groupDesc" id="desc" name="Description"
+                            [(ngModel)]="addGroupRequest.groupDetails.description">
+                    </div>
+                    <div class="my-3">
+                        <label class="form-label">category</label>
+
+                        <input type="radio" class="btn-check" name="category" formControlName="category" id="option1"
+                            value="category1" [(ngModel)]="addGroupRequest.groupDetails.category">
+                        <label class="btn btn-outline-primary mx-2" for="option1">category1</label>
+
+
+                        <input type="radio" class="btn-check" name="category" formControlName="category" id="option2"
+                            value="category2" [(ngModel)]="addGroupRequest.groupDetails.category">
+                        <label class="btn btn-outline-primary mx-2" for="option2">category2</label>
+
+
+                        <input type="radio" class="btn-check" name="category" formControlName="category" id="option3"
+                            value="category3" [(ngModel)]="addGroupRequest.groupDetails.category">
+                        <label class="btn btn-outline-primary mx-2" for="option3">category3</label>
+
+                    </div>
+
+                    <div>
+                        <label class="form-label"> Members</label>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Select Members
+                            </button>
+
+                            <ul class=" dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li *ngFor="let user of usersList">
+                                    <input type="checkbox" [value]="user.usersId"
+                                        (change)="onCheckBoxChange($event)" />{{user.name}}
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- <input type="checkbox" class="form-control" formControlName="members"> -->
+                    </div>
+
+
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>

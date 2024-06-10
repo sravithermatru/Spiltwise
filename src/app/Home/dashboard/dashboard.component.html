@@ -69,28 +69,74 @@
                     </div>
                 </button>
 
+                <!-- <app-create-group></app-create-group> -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create new Group</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+                                <form [formGroup]='addGroupForm' (ngSubmit)="addGroup()">
                                     <div>
-                                        <label>Name: </label>
-                                        <input type="text">
+                                        <label class="form-label">Group Name</label>
+                                        <input class="form-control" type="text" formControlName="groupName" id="name"
+                                            name="Name" [(ngModel)]="addGroupRequest.groupDetails.name">
                                     </div>
-                                    
+                                    <div class="my-3">
+                                        <label class="form-label">Description</label>
+                                        <input class="form-control" type="text" formControlName="groupDesc" id="desc"
+                                            name="Description" [(ngModel)]="addGroupRequest.groupDetails.description">
+                                    </div>
+                                    <div class="my-3">
+                                        <label class="form-label">category</label>
+
+                                        <input type="radio" class="btn-check" name="category" formControlName="category"
+                                            id="option1" value="category1"
+                                            [(ngModel)]="addGroupRequest.groupDetails.category">
+                                        <label class="btn btn-outline-primary mx-2" for="option1">category1</label>
+
+
+                                        <input type="radio" class="btn-check" name="category" formControlName="category"
+                                            id="option2" value="category2"
+                                            [(ngModel)]="addGroupRequest.groupDetails.category">
+                                        <label class="btn btn-outline-primary mx-2" for="option2">category2</label>
+
+
+                                        <input type="radio" class="btn-check" name="category" formControlName="category"
+                                            id="option3" value="category3"
+                                            [(ngModel)]="addGroupRequest.groupDetails.category">
+                                        <label class="btn btn-outline-primary mx-2" for="option3">category3</label>
+
+                                    </div>
+                                    <div>
+                                        <label class="form-label"> Members</label>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Select Members
+                                            </button>
+
+                                            <ul class=" dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li *ngFor="let user of usersList">
+                                                    <input type="checkbox" [value]="user.usersId"
+                                                        (change)="onCheckBoxChange($event)" />{{user.name}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
+
                         </div>
                     </div>
                 </div>

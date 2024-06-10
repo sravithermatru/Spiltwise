@@ -10,6 +10,7 @@ import { BalanceService } from 'src/app/services/balance.service';
 import { error } from 'jquery';
 import { UsersService } from 'src/app/services/users.service';
 import { Balance } from 'src/app/models/balance';
+import { FormBuilder } from '@angular/forms';
 
 interface UserBalance {
   name: string;
@@ -45,10 +46,18 @@ export class GroupComponent implements OnInit {
 
   constructor(
     private groupService: GroupService,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private expenseService: ExpenseService,
     private balanceService: BalanceService,
-    private userService: UsersService) { }
+    private userService: UsersService) 
+    {
+      // this.addExpForm = this.formBuilder.group({
+      //   title:[''],
+      //   desc:[''],
+      //   amount:['']
+      // });
+    }
 
   ngOnInit(): void {
 
@@ -153,6 +162,7 @@ export class GroupComponent implements OnInit {
 
 
   }
+
  
   viewExpenseModal(expense:any)
   {

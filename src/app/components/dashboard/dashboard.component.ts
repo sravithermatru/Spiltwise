@@ -151,6 +151,7 @@ export class DashboardComponent implements OnInit{
     this.usersService.CreateUserAsync(this.addUserRequest)
     .subscribe({
       next:(response)=>{
+        console.log(this.addUserRequest)
         console.log(response)
       },
       error:(response)=>{

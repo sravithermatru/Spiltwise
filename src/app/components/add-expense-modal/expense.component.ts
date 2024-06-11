@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Expense } from '../models/expense';
-import { ExpenseService } from '../services/expense.service';
+import { Expense } from '../../models/expense';
+import { ExpenseService } from '../../services/expense.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ExpenseDetail } from '../models/expense-detail';
-import { UsersService } from '../services/users.service';
+import { ExpenseDetail } from '../../models/expense-detail';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-expense',

@@ -14,12 +14,14 @@ export class ExpenseDetailsModalComponent implements OnInit {
   
   userInv : Users[] =[]
 
+
   ngOnInit(): void {
     console.log(this.expense);
 
     this.userInv= this.expense.usersInvolved;
     console.log(this.userInv);
   }
+  
   closeModal(){
     this.close.emit();
    }

@@ -10,7 +10,7 @@ import { BalanceService } from 'src/app/services/balance.service';
 import { error } from 'jquery';
 import { UsersService } from 'src/app/services/users.service';
 import { Balance } from 'src/app/models/balance';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 interface UserBalance {
   name: string;
@@ -40,6 +40,8 @@ export class GroupComponent implements OnInit {
   userId: number = 0;
   balData: number = 0;
 
+  addExpForm: FormGroup;
+
   userBalances: UserBalance[] = [];
   filteredBalances: any[] = [];
   selectedExpense: any;
@@ -52,12 +54,31 @@ export class GroupComponent implements OnInit {
     private balanceService: BalanceService,
     private userService: UsersService) 
     {
-      // this.addExpForm = this.formBuilder.group({
-      //   title:[''],
-      //   desc:[''],
-      //   amount:['']
-      // });
+      this.addExpForm = this.formBuilder.group({
+        title:[''],
+        desc:[''],
+        amount:['']
+      });
     }
+
+    
+    addExpDetailsRequest : ExpenseDetail={
+      id: 0,
+      expenseId: 0,
+      title: '',
+      amount: 0,
+      description: '',
+      createdOn: new Date
+    }
+
+    addExpRequest : Expense={
+      expenseId: 0,
+      groupId: 0,
+      usersPaid: [],
+      usersInvolved: [],
+      expenseDetails: this.addExpDetailsRequest
+    }
+
 
   ngOnInit(): void {
 
@@ -158,11 +179,16 @@ export class GroupComponent implements OnInit {
         }
       },
     });
-    
-
-
   }
 
+  // addExp(){
+  //   this.expenseService.AddExpense(this.addExpRequest)
+  //   .subscribe({
+  //     next:(response)=>{
+
+  //     }
+  //   })
+  // }
  
   viewExpenseModal(expense:any)
   {

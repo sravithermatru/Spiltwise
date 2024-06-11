@@ -42,22 +42,24 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+                            <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+                                <div class="modal-body">
                                     <div>
                                         <label>Name: </label>
-                                        <input type="text">
+                                        <input type="text" class="form-control" placeholder="Enter the Name"
+                                        id="name" formControlName="userName" [(ngModel)]="addUserRequest.name" required>
                                     </div>
                                     <div>
                                         <label>Email</label>
-                                        <input type="email">
+                                        <input type="email" class="form-control" placeholder="Enter the Email"
+                                        id="email" formControlName="email" [(ngModel)]="addUserRequest.email" required>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

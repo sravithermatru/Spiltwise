@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './Home/home/home.component';
-import { DashboardComponent } from './Home/dashboard/dashboard.component';
-import { CreateGroupComponent } from './Group/create-group/create-group.component';
-import { GroupComponent } from './Group/group/group.component';
-import { ExpenseComponent } from './expense/expense.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CreateGroupComponent } from './components/create-group-modal/create-group.component';
+import { GroupComponent } from './components/group/group.component';
+import { ExpenseComponent } from './components/add-expense-modal/expense.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent },

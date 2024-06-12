@@ -62,11 +62,7 @@ export class DashboardComponent implements OnInit{
     });
     }
 
-    addUserRequest : Users={
-      usersId: 0,
-      name: '',
-      email: ''
-    }
+   
 
     
   addGroupDetailsRequest : GroupDetails ={
@@ -147,18 +143,6 @@ export class DashboardComponent implements OnInit{
     
   }
 
-  addUser(){
-    this.usersService.CreateUserAsync(this.addUserRequest)
-    .subscribe({
-      next:(response)=>{
-        console.log(this.addUserRequest)
-        console.log(response)
-      },
-      error:(response)=>{
-        console.log(response)
-      }
-    })
-  }
   
 
   addGroup(){

@@ -26,44 +26,16 @@
         <div class="row">
             <div class="col-3  input">
 
+                <!-- Modal Button -->
                 <button type="button" class="rounded-pill button" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrops">
                     <div>
                         <h5>Add new member</h5>
                     </div>
                 </button>
-                <!-- Modal -->
-                <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="-1" aria-labelledby="staticBackdropsLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
-                                <div class="modal-body">
-                                    <div>
-                                        <label>Name: </label>
-                                        <input type="text" class="form-control" placeholder="Enter the Name"
-                                        id="name" formControlName="userName" [(ngModel)]="addUserRequest.name" required>
-                                    </div>
-                                    <div>
-                                        <label>Email</label>
-                                        <input type="email" class="form-control" placeholder="Enter the Email"
-                                        id="email" formControlName="email" [(ngModel)]="addUserRequest.email" required>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
+                <app-add-users></app-add-users>
+                
+                
                 <button type="button" class="rounded-pill button" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                     <div>

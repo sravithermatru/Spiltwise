@@ -27,15 +27,18 @@ export class GroupComponent implements OnInit {
 
   groupId: any = 0;
   name: string = "";
-  userdata: Users[] = [];
+  users: any[] = [];
   category: string = "";
   date: Date = new Date();
+
+
+  userdata: Users[] = [];
 
   id: any = 0;
   expenses: Expense[] = [];
   exp: ExpenseDetail[] = [];
   TotalAmount: number = 0;
-  users: any[] = [];
+
   usersBal: Users[] = [];
   userId: number = 0;
   balData: number = 0;
@@ -52,56 +55,47 @@ export class GroupComponent implements OnInit {
     private route: ActivatedRoute,
     private expenseService: ExpenseService,
     private balanceService: BalanceService,
-    private userService: UsersService) 
-    {
-      this.addExpForm = this.formBuilder.group({
-        title:[''],
-        desc:[''],
-        amount:['']
-      });
-    }
+    private userService: UsersService) {
+    this.addExpForm = this.formBuilder.group({
+      title: [''],
+      desc: [''],
+      amount: ['']
+    });
+  }
 
-    
-    addExpDetailsRequest : ExpenseDetail={
-      id: 0,
-      expenseId: 0,
-      title: '',
-      amount: 0,
-      description: '',
-      createdOn: new Date
-    }
 
-    addExpRequest : Expense={
-      expenseId: 0,
-      groupId: 0,
-      usersPaid: [],
-      usersInvolved: [],
-      expenseDetails: this.addExpDetailsRequest
-    }
+  addExpDetailsRequest: ExpenseDetail = {
+    id: 0,
+    expenseId: 0,
+    title: '',
+    amount: 0,
+    description: '',
+    createdOn: new Date
+  }
+
+  addExpRequest: Expense = {
+    expenseId: 0,
+    groupId: 0,
+    usersPaid: [],
+    usersInvolved: [],
+    expenseDetails: this.addExpDetailsRequest
+  }
 
 
   ngOnInit(): void {
 
-
-    // this.groupService.GetAllGroup()
-    //   .subscribe({
-    //     next: (groups) => {
-    //       console.log(groups);
-    //     },
-    //     error: (response) => {
-    //       console.log(response);
-    //     }
-    //   });
-
-
     this.route.paramMap.subscribe({
       next: (response) => {
+        //geting the groupId of the group opened
         this.groupId = response.get('groupId');
         const modifiedGroupId = this.groupId?.replace(/%/g, '_');
+
+
         if (this.groupId) {
           this.groupService.GetByIdAsync(this.groupId)
             .subscribe({
               next: (response) => {
+                //getting group details
                 this.name = response.data.groupDetails.name;
                 this.category = response.data.groupDetails.category;
                 this.date = response.data.groupDetails.Date;
@@ -110,10 +104,11 @@ export class GroupComponent implements OnInit {
                 //console.log(this.users);
                 //  console.log(this.userId);
                 for (let i of this.users)
-                  if (i.usersId) {
-
+                  if (i.usersId) 
+                  {
                     this.balanceService.GetBalanceByUser(i.usersId)
                       .subscribe({
+                        //Getting balance of every users
                         next: (response) => {
                           this.usersBal = response.data;
                           //console.log(response.data.usersId);
@@ -124,25 +119,23 @@ export class GroupComponent implements OnInit {
                         }
                       })
                   }
-
-              },
+                },
               error: (response) => {
                 console.log(response)
               }
             });
         }
-      }
-    });
-    this.route.paramMap.subscribe({
-      next: (response) => {
-        this.id = response.get('groupId');
-        if (this.id) {
-          this.expenseService.GetExpenseByGroup(this.id)
+
+        if (this.groupId) {
+          this.expenseService.GetExpenseByGroup(this.groupId)
             .subscribe({
+
+              //getting all the expenses of the group
               next: (response) => {
                 this.expenses = response.data;
-                //console.log(this.expenses);
+                console.log(this.expenses);
                 for (let i of this.expenses) {
+                  //calculating the total expense
                   this.TotalAmount = this.TotalAmount + i.expenseDetails.amount;
 
                 }
@@ -154,13 +147,15 @@ export class GroupComponent implements OnInit {
             });
         }
       }
-    })
-    
+    });
+
+
+
     this.route.paramMap.subscribe({
       next: (response) => {
         this.id = response.get('groupId');
- 
- 
+
+
         if (this.id) {
           this.userService
             .GetUserByGroup(this.id)
@@ -169,7 +164,7 @@ export class GroupComponent implements OnInit {
                 this.userdata = response.data;
                 //console.log(this.userName);
                 // this.userId  = response.data.userId;
-               
+
                 this.loadUserBalances(this.userdata);
               },
               error: (response) => {
@@ -189,43 +184,39 @@ export class GroupComponent implements OnInit {
   //     }
   //   })
   // }
- 
-  viewExpenseModal(expense:any)
-  {
-    this.selectedExpense=expense;
+
+  viewExpenseModal(expense: any) {
+    this.selectedExpense = expense;
   }
- 
-  closeModal(){
-    this.selectedExpense=null;
+
+  closeModal() {
+    this.selectedExpense = null;
   }
 
 
-  loadUserBalances(userData: any[]): void{
- 
+  loadUserBalances(userData: any[]): void {
+
     console.log(userData);
-   
-   
+
+
     this.balanceService.GetBalances()
-      .subscribe((balances:any) => {
+      .subscribe((balances: any) => {
         console.log('Balances:', balances);
-        for(var user of userData)
-        {
-          for(var balance of balances.data)
-          {
-            if(user.usersId==balance.usersId)
-            {
-              this.filteredBalances=this.filteredBalances.concat(balance);
+        for (var user of userData) {
+          for (var balance of balances.data) {
+            if (user.usersId == balance.usersId) {
+              this.filteredBalances = this.filteredBalances.concat(balance);
             }
           }
-         
+
         }
         console.log(this.filteredBalances);
-        this.userBalances=this.margeUserBalance(userData,this.filteredBalances);
-      //  console.log(this.userBalances);
-       
+        this.userBalances = this.margeUserBalance(userData, this.filteredBalances);
+        //  console.log(this.userBalances);
+
       },
-    );
-   
+      );
+
   }
   margeUserBalance(users: any[], balances: any[]): UserBalance[] {
     if (!Array.isArray(users)) {

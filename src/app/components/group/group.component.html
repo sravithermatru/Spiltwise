@@ -35,15 +35,15 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form [formGroup]="addExpForm" >
                                 <label class="form-label">Expense Title</label>
-                                <input class="form-control" type="text" formControlName="ExpTitle" id="title" name="title"
+                                <input class="form-control" type="text" formControlName="title" id="title" name="title"
                                 >
                                 <label class="form-label">Description</label>
-                                <input class="form-control" type="text" formControlName="ExpDesc" id="desc" name="Description"
+                                <input class="form-control" type="text" formControlName="desc" id="desc" name="Description"
                                 >
                                 <label class="form-label">Amount</label>
-                                <input class="form-control" type="number" formControlName="ExpAmount" id="amt" name="Amount"
+                                <input class="form-control" type="number" formControlName="amount" id="amt" name="Amount"
                                 >
                                 <label class="form-label">Paid By:</label>
                                 <label class="form-label">Members:</label>
